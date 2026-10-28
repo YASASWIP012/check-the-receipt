@@ -5,7 +5,7 @@
 // Writes results/audit-<seed>.json (one row per receipt) and
 // results/audit-<seed>.md (the summary). Same seed, same sample.
 
-import { mkdirSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { checkAnchored, checkFieldsUnchanged, checkSignature } from "../src/lib/checks";
 import { extractReceipt } from "../src/lib/extract";
 import type { ActivityEvent, AnchorTx, CheckStatus, Jwk, TraceReceipt } from "../src/lib/types";
@@ -36,7 +36,7 @@ function rng(seed: number) {
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-async function get(url: string, tries = 4): Promise<Response> {
+async function get(url: string, tries = 6): Promise<Response> {
   for (let i = 0; ; i++) {
     try {
       const res = await fetch(url, { headers: HEADERS, signal: AbortSignal.timeout(20000) });
@@ -44,7 +44,7 @@ async function get(url: string, tries = 4): Promise<Response> {
     } catch (e) {
       if (i >= tries) throw e;
     }
-    await sleep(800 * 2 ** i);
+    await sleep(Math.min(1000 * 2 ** i, 30000));
   }
 }
 
@@ -90,6 +90,7 @@ interface Row {
   eventKind: string;
   sampledAt: number;
   found: boolean;
+  fetchFailed?: boolean;
   fields?: CheckStatus;
   signature?: CheckStatus;
   anchored?: CheckStatus;
@@ -105,18 +106,28 @@ interface Row {
 }
 
 async function main() {
+  mkdirSync("results", { recursive: true });
+  const checkpoint = `results/audit-${SEED}.checkpoint.json`;
+  const saved: { lo?: number; hi?: number; picked?: [string, { e: ActivityEvent; order: number }][]; rows?: Row[] } =
+    existsSync(checkpoint) ? JSON.parse(readFileSync(checkpoint, "utf8")) : {};
+  const save = (extra: object) => writeFileSync(checkpoint, JSON.stringify({ ...saved, ...extra }));
+
   const random = rng(SEED);
-  const [lo, hi] = await bounds();
+  const [lo, hi] = saved.lo != null && saved.hi != null ? [saved.lo, saved.hi] : await bounds();
+  saved.lo = lo;
+  saved.hi = hi;
   console.log(`history positions ${lo}..${hi}, seed ${SEED}`);
 
   // Draw positions until we have N distinct receipts.
-  const picked = new Map<string, { e: ActivityEvent; order: number }>();
+  const picked = new Map<string, { e: ActivityEvent; order: number }>(saved.picked ?? []);
   while (picked.size < N) {
     const want = Math.min(N - picked.size, 200);
     const orders = Array.from({ length: want }, () => lo + Math.floor(random() * (hi - lo)));
     const found = await pool(orders, CONCURRENCY, async (o) => ({ o, e: (await eventsBefore(o))[0] }));
     for (const { o, e } of found) if (e && !picked.has(e.data_id) && picked.size < N) picked.set(e.data_id, { e, order: o });
     console.log(`sampled ${picked.size}/${N}`);
+    saved.picked = [...picked];
+    save({});
   }
 
   const jwksCache = new Map<string, Promise<{ keys: Jwk[] } | null>>();
@@ -140,12 +151,28 @@ async function main() {
     return txCache.get(hash)!;
   };
 
-  let done = 0;
+  const finished = new Map((saved.rows ?? []).filter((r) => !r.fetchFailed).map((r) => [r.dataId, r]));
+  let done = finished.size;
+  let sinceSave = 0;
   const rows = await pool([...picked.values()], CONCURRENCY, async ({ e, order }): Promise<Row> => {
+    const prior = finished.get(e.data_id);
+    if (prior) return prior;
     const base: Row = { dataId: e.data_id, provider: e.provider, eventKind: e.kind, sampledAt: order, found: false };
-    const res = await get(`${TRACE}/asset/${e.data_id}`);
-    const receipt: TraceReceipt | null = res.ok ? extractReceipt(await res.text()) : null;
+    const row = await checkOne(base).catch((): Row => ({ ...base, fetchFailed: true }));
+    finished.set(row.dataId, row);
     if (++done % 50 === 0) console.log(`checked ${done}/${picked.size}`);
+    if (++sinceSave >= 25) {
+      sinceSave = 0;
+      save({ rows: [...finished.values()] });
+    }
+    return row;
+  });
+  save({ rows });
+
+  async function checkOne(base: Row): Promise<Row> {
+    const res = await get(`${TRACE}/asset/${base.dataId}`);
+    if (!res.ok && res.status !== 404) throw new Error(`asset ${res.status}`);
+    const receipt: TraceReceipt | null = res.ok ? extractReceipt(await res.text()) : null;
     if (!receipt) return base;
     const m = receipt.initial_metadata_json;
     const [jwks, tx] = await Promise.all([
@@ -169,12 +196,13 @@ async function main() {
       block: tx?.blockNumber ?? null,
       batchSize: anchored.evidence.batchSize ? Number(anchored.evidence.batchSize) : undefined,
     };
-  });
+  }
 
-  mkdirSync("results", { recursive: true });
   const runAt = new Date().toISOString();
   writeFileSync(`results/audit-${SEED}.json`, JSON.stringify({ runAt, seed: SEED, n: N, positions: [lo, hi], rows }, null, 2));
 
+  const failed = rows.filter((r) => r.fetchFailed).length;
+  if (failed) console.log(`${failed} receipts could not be fetched; run the same command again to retry them`);
   const found = rows.filter((r) => r.found);
   const tally = <K extends keyof Row>(key: K) => {
     const t: Record<string, number> = {};
@@ -192,7 +220,7 @@ async function main() {
 
 Run at ${runAt}. ${N} receipts drawn at random from Trace activity positions ${lo} to ${hi}.
 
-- Receipts found on Trace: ${found.length} of ${rows.length}
+- Receipts found on Trace: ${found.length} of ${rows.length}${failed ? ` (${failed} not fetched because of network errors)` : ""}
 - All three checks pass: ${allPass}
 - Fields hash to the signed root: ${tally("fields")}
 - Provider signature: ${tally("signature")}

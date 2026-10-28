@@ -44,3 +44,4 @@ next-env.d.ts
 results/audit-run.log
 results/audit-1.*
 .*/launch.json
+results/*.checkpoint.json
