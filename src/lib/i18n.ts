@@ -47,7 +47,7 @@ const en = {
     q: "Is it recorded on a public blockchain?",
     proves: "Block {block} on the DATA Network holds this receipt's ID, the signed root and the file fingerprint ({pos} in its batch). Anyone can read that block, and nobody can quietly edit it.",
     provesGeneric: "The anchor transaction holds this receipt's ID, the signed root and the file fingerprint. Anyone can read it, and nobody can quietly edit it.",
-    doesnt: "It shows the claim existed at that moment. The chain holds fingerprints, not the file.",
+    doesnt: "It shows the claim existed at that moment. The chain stores only fingerprints, and the file itself stays with the app.",
     waiting: "Trace batches new receipts before anchoring them. Try again in a minute or two.",
   },
   q4: {
@@ -85,7 +85,7 @@ const en = {
   footer: {
     holders: "The DATA Network keeps running as it does today, and holders don't need to do anything. The move to Sui and Walrus is announced and hasn't happened yet.",
     sources: "Sources",
-    unaffiliated: "An independent tool. Not made by or affiliated with the DATA Foundation, Sui or Walrus.",
+    unaffiliated: "This is an independent tool. It isn't made by or affiliated with the DATA Foundation, Sui or Walrus.",
     code: "Source code",
   },
 };
@@ -134,7 +134,7 @@ const ko: typeof en = {
     q: "공개 블록체인에 기록되어 있나요?",
     proves: "DATA Network의 {block}번 블록에 이 영수증의 ID, 서명된 루트, 파일 지문이 들어 있습니다(배치 내 {pos}). 누구나 이 블록을 읽을 수 있고, 아무도 몰래 고칠 수 없습니다.",
     provesGeneric: "기록 트랜잭션에 이 영수증의 ID, 서명된 루트, 파일 지문이 들어 있습니다. 누구나 읽을 수 있고, 아무도 몰래 고칠 수 없습니다.",
-    doesnt: "그 시점에 이 내용이 존재했다는 것을 보여 줍니다. 체인에는 파일이 아니라 지문만 있습니다.",
+    doesnt: "그 시점에 이 내용이 존재했다는 것을 보여 줍니다. 체인에는 지문만 저장되고, 파일은 앱에 남아 있습니다.",
     waiting: "Trace는 새 영수증을 모아서 한 번에 기록합니다. 1~2분 뒤에 다시 확인해 보세요.",
   },
   q4: {
