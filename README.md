@@ -2,7 +2,7 @@
 
 Trace, the DATA Foundation's registry for AI training data, has recorded more than 250 million receipts. Each one says where a file came from, which app collected it, which terms the contributor accepted, and when it was registered.
 
-This page lets anyone pick one of those receipts and check what it claims, in the browser, with no wallet or account. It runs three checks on public data, plus a fourth if you hold the original file.
+[check-the-receipt.vercel.app](https://check-the-receipt.vercel.app) lets anyone pick one of those receipts and check what it claims, in the browser, with no wallet or account. It runs three checks on public data, plus a fourth if you hold the original file.
 
 | Question | What runs |
 |---|---|
