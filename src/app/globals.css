@@ -1,26 +1,96 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --bg: #f3f1ec;
+  --surface: #ffffff;
+  --paper: #fffdf7;
+  --ink: #1c1b19;
+  --muted: #6b6760;
+  --line: #e2ded5;
+  --pass: #1f7a4d;
+  --pass-soft: #e4f3ea;
+  --warn: #9a6200;
+  --warn-soft: #fbf0d9;
+  --bad: #b3261e;
+  --bad-soft: #fbe5e3;
+  --idle: #b9b4aa;
+  --accent: #2b59c3;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #141412;
+    --surface: #1d1c1a;
+    --paper: #f6f2e8;
+    --ink: #ece9e2;
+    --muted: #a19c92;
+    --line: #34322e;
+    --pass: #4cc38a;
+    --pass-soft: #17301f;
+    --warn: #e0a640;
+    --warn-soft: #33270f;
+    --bad: #f07167;
+    --bad-soft: #3a1714;
+    --idle: #5d5952;
+    --accent: #7ea2ff;
   }
 }
 
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-pass: var(--pass);
+  --color-pass-soft: var(--pass-soft);
+  --color-warn: var(--warn);
+  --color-warn-soft: var(--warn-soft);
+  --color-bad: var(--bad);
+  --color-bad-soft: var(--bad-soft);
+  --color-idle: var(--idle);
+  --color-accent: var(--accent);
+  --font-sans: var(--font-geist-sans), "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, "Apple SD Gothic Neo", monospace;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+/* The receipt stays light in both themes, like real paper. */
+.paper {
+  background: var(--paper);
+  color: #1c1b19;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 12px 32px -12px rgba(0, 0, 0, 0.25);
+  --zig: 8px;
+  mask:
+    conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / var(--zig) 51% repeat-x,
+    conic-gradient(from -45deg at bottom, #0000, #000 1deg 89deg, #0000 90deg) bottom / var(--zig) 51% repeat-x;
+}
+
+.line-state {
+  transition: color 400ms ease, background-color 400ms ease;
+}
+
+@keyframes scan {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(100%); }
+}
+
+.scanning::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(43, 89, 195, 0.12), transparent);
+  animation: scan 900ms ease-in-out infinite;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanning::after { animation: none; }
+  .line-state { transition: none; }
 }

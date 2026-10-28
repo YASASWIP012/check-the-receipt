@@ -1,0 +1,114 @@
+{
+  "data_id": "b242b3c9-15dd-5419-828f-742df5e769d3",
+  "source_record_id": "443d296b-67a3-418c-ae5b-51604831b790",
+  "provider": "numo",
+  "initial_metadata_root": "sha256:ed99a4992fd0dfdcdcdf6a6d0315ddcefe2ecb468de88b8d49947aa4130951fa",
+  "initial_metadata_json": {
+    "app": {
+      "legal_entity": "Poseidon AI, Inc.",
+      "platform_name": "numo"
+    },
+    "asset": {
+      "collection_id": "4792b845-bc9a-4a52-95fc-d50537ee81d7"
+    },
+    "contributor": {
+      "anon_id": "numo-user-635c1b31443726d76b7d23c0f3f78e6d71d9db12f993efa20a60fbc45fb974d0",
+      "consent": {
+        "privacy_policy_hash": "sha256:1f556903144c3cbf2971b55e1cc3a676ad87550bfddf3b1eed27eb8796348692",
+        "privacy_policy_uri": "https://app.numolabs.ai/privacy?version=2026-04-29",
+        "privacy_policy_version": "2026-04-29",
+        "tos_hash": "sha256:b1655342e0209dcbc32edc007a3b044db7f5566e89f59169cfef9641b927a576",
+        "tos_uri": "https://app.numolabs.ai/terms?version=2026-04-29",
+        "tos_version": "2026-04-29"
+      },
+      "geo_region": "ID",
+      "tax_status": "not_submitted"
+    },
+    "file": {
+      "behavior": {
+        "uploaded_at_utc": "2026-06-20T23:48:25.489595Z"
+      },
+      "content_sha256": "sha256:ac6a7d56fe37b4947af3238fbd08c18fb82fa6cc5cc4d3147314212d08cfe64f",
+      "media_category": "audio",
+      "mime_type": "audio/wav",
+      "size_bytes": 3340844
+    },
+    "provider_payload": {
+      "artifact_id": "87695671-59a4-4f42-b73a-0b12d7f4d5b2",
+      "campaign_id": "4792b845-bc9a-4a52-95fc-d50537ee81d7",
+      "ip_id": null,
+      "media_id_public": "443d296b-67a3-418c-ae5b-51604831b790",
+      "registration_status": "FAILED",
+      "script_assignment_id": "12e2c5a7-26b8-4591-9f5e-4385148b5b20",
+      "submission_id": "443d296b-67a3-418c-ae5b-51604831b790",
+      "submission_state": "pending_review",
+      "token_id": null
+    },
+    "schema_version": "trace-v1.0",
+    "timestamps": {
+      "occurred_at": "2026-06-20T23:48:25.489595Z",
+      "uploaded_at": "2026-06-20T23:48:25.489595Z"
+    }
+  },
+  "occurred_at": "2026-06-20T23:48:25.489595Z",
+  "ingested_at": "2026-07-15T20:51:04Z",
+  "current_seq": 1,
+  "updates": [
+    {
+      "seq": 1,
+      "prev_metadata_root": "sha256:ed99a4992fd0dfdcdcdf6a6d0315ddcefe2ecb468de88b8d49947aa4130951fa",
+      "metadata_root": "sha256:6483a273f1524522074402f6fd7277d2fcd278bf0f08885a716f3fb6faa03f54",
+      "metadata_json": {
+        "app": {
+          "legal_entity": "Poseidon AI, Inc.",
+          "platform_name": "numo"
+        },
+        "asset": {
+          "collection_id": "4792b845-bc9a-4a52-95fc-d50537ee81d7"
+        },
+        "contributor": {
+          "anon_id": "numo-user-635c1b31443726d76b7d23c0f3f78e6d71d9db12f993efa20a60fbc45fb974d0",
+          "consent": {
+            "privacy_policy_hash": "sha256:1f556903144c3cbf2971b55e1cc3a676ad87550bfddf3b1eed27eb8796348692",
+            "privacy_policy_uri": "https://app.numolabs.ai/privacy?version=2026-04-29",
+            "privacy_policy_version": "2026-04-29",
+            "tos_hash": "sha256:b1655342e0209dcbc32edc007a3b044db7f5566e89f59169cfef9641b927a576",
+            "tos_uri": "https://app.numolabs.ai/terms?version=2026-04-29",
+            "tos_version": "2026-04-29"
+          },
+          "geo_region": "ID",
+          "tax_status": "not_submitted"
+        },
+        "file": {
+          "behavior": {
+            "uploaded_at_utc": "2026-06-20T23:48:25.489595Z"
+          },
+          "content_sha256": "sha256:ac6a7d56fe37b4947af3238fbd08c18fb82fa6cc5cc4d3147314212d08cfe64f",
+          "media_category": "audio",
+          "mime_type": "audio/wav",
+          "size_bytes": 3340844
+        },
+        "provider_payload": {
+          "artifact_id": "87695671-59a4-4f42-b73a-0b12d7f4d5b2",
+          "campaign_id": "4792b845-bc9a-4a52-95fc-d50537ee81d7",
+          "ip_id": null,
+          "media_id_public": "443d296b-67a3-418c-ae5b-51604831b790",
+          "registration_status": "FAILED",
+          "script_assignment_id": "12e2c5a7-26b8-4591-9f5e-4385148b5b20",
+          "submission_id": "443d296b-67a3-418c-ae5b-51604831b790",
+          "submission_state": "pending_review",
+          "token_id": null
+        },
+        "schema_version": "trace-v1.0",
+        "timestamps": {
+          "occurred_at": "2026-06-20T23:48:25.489595Z",
+          "payment_credited_at": "2026-07-17T07:21:04.878432Z",
+          "uploaded_at": "2026-06-20T23:48:25.489595Z"
+        }
+      },
+      "occurred_at": "2026-07-17T07:21:04.878432Z",
+      "tx_hash": "0xc39b434a62442b39bb5233afb1f736ad59cef0e741783ef0ac35922eaa81230a"
+    }
+  ],
+  "tx_hash": "0xb1d52f8441c30c02381007044c07a95dcda8a4ff38a89f91de1f1108f92dda4a"
+}

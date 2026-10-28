@@ -1,0 +1,118 @@
+{
+  "data_id": "d6fa7d84-afbe-5aeb-acd5-795ca63642ad",
+  "source_record_id": "kmf_c0a6905f9425bcb0a66bcb2d5ec33588",
+  "provider": "kled",
+  "initial_metadata_root": "sha256:7c1e300bc2765e439df1aafc95893f11d47d1a36bc8117c0c1a9193572efb1f1",
+  "initial_metadata_json": {
+    "app": {
+      "legal_entity": "Nitrility Inc. (Delaware, USA)",
+      "platform_name": "kled.ai"
+    },
+    "attestation": {
+      "algorithm": "ES256",
+      "key_id": "kled-verify-2026-q1",
+      "key_url": "https://www.kled.ai/.well-known/jwks.json",
+      "payload_hash": "sha256:7c1e300bc2765e439df1aafc95893f11d47d1a36bc8117c0c1a9193572efb1f1",
+      "signature": "s_2CRJm4ofimEyIuIuh30L-9p9PUF5It7P9YP_mk5abyuIebiKIgv0rRQpv-3Tc1PPDP67ZWZT2RUhPy2fW0ng",
+      "signed_at_utc": "2026-10-28T14:16:05Z"
+    },
+    "contributor": {
+      "account_verification_status": "verified",
+      "anon_id": "kup_1c314caf89683852f018d6e20f97968a",
+      "consent": {
+        "privacy_policy_hash": "sha256:b7c636fec864c0876ed550d3cfdf10a5d79a69436eb365735b31632c64d03693",
+        "privacy_policy_uri": "https://www.kled.ai/privacy-policy/2026-06-25",
+        "privacy_policy_version": "2026-06-25",
+        "tos_hash": "sha256:1b7d2f2c869837987449680ca72d17d72ee763bd65232586d78326d0ad766c7a",
+        "tos_uri": "https://www.kled.ai/terms-of-service/2026-05-01",
+        "tos_version": "2026-05-01"
+      },
+      "geo_region": "US",
+      "kyc_country": "US",
+      "kyc_status": "verified",
+      "tax_status": "not_submitted"
+    },
+    "file": {
+      "behavior": {
+        "capture_to_upload_bucket": "0-5min",
+        "capture_to_upload_seconds": 50,
+        "captured_at_utc": "2026-10-28",
+        "captured_via": "ios_native_camera",
+        "client_version": "ios-3.0.3",
+        "upload_session_kind": "gallery_pick",
+        "upload_session_size": 2190,
+        "uploaded_at_utc": "2026-10-28",
+        "uploaded_via": "ios_app"
+      },
+      "content_md5": "md5:486a6d705bb98494e9b0237cabfa9411",
+      "content_sha256": "sha256:f27007da1a61608e330dd5b43306e53a7a4c82d3c91dd84013d59e6698a1c38e",
+      "hashes": {
+        "ahash64": "f0e0829fffffe500",
+        "dhash64": "39b981c0c0c0b2a0",
+        "phash64": "ef6542a04aaebd2a"
+      },
+      "media_category": "image",
+      "mime_type": "image/jpeg",
+      "size_bytes": 2704962
+    },
+    "file_specific": {
+      "base": {
+        "intact_metadata": true
+      },
+      "image": {
+        "apple_features": {
+          "has_depth_map": false,
+          "has_portrait_effects_matte": false,
+          "is_heic": false
+        },
+        "device": {
+          "lens_serial_present": false
+        },
+        "integrity": {
+          "ai_generation_markers": "none_detected",
+          "apple_signed_metadata": false,
+          "c2pa_manifest_present": false,
+          "exif_intact": true
+        },
+        "raster": {
+          "bit_depth": 8,
+          "color_space": "Display P3",
+          "compression": "JPEG",
+          "height_px": 3024,
+          "orientation": 6,
+          "subject_area_present": true,
+          "width_px": 4032
+        },
+        "settings": {
+          "exposure_compensation_ev": 2.001317342122396,
+          "exposure_program": "program_normal",
+          "exposure_time": "2.0",
+          "f_number": 2.001317342122396,
+          "flash_fired": false,
+          "focal_length_35mm": 26,
+          "focal_length_mm": 2.001317342122396,
+          "iso": 400,
+          "metering_mode": "pattern",
+          "white_balance": "auto"
+        }
+      }
+    },
+    "provider_payload": {
+      "kled_schema_version": "1.6",
+      "media_id_public": "kmf_c0a6905f9425bcb0a66bcb2d5ec33588",
+      "task_public_id": "ktask_40847a34206d0dde1eba3c1ca85641a5",
+      "uploader_cohort_id": "kcoh_2026q4_us"
+    },
+    "schema_version": "trace-v1.0",
+    "timestamps": {
+      "captured_at": "2026-10-28T00:00:00Z",
+      "occurred_at": "2026-10-28T14:14:04Z",
+      "uploaded_at": "2026-10-28T14:14:04Z"
+    }
+  },
+  "occurred_at": "2026-10-28T14:14:04Z",
+  "ingested_at": "2026-10-28T14:16:05Z",
+  "current_seq": 0,
+  "updates": [],
+  "tx_hash": "0xf94cd6c4de0141a1c5c54df423bfc7cd999b0fe88e067d01c6c5e9681a6946e8"
+}

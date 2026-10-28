@@ -1,0 +1,103 @@
+{
+  "data_id": "880d9d07-ecca-5332-ac33-8d8c8966716c",
+  "source_record_id": "kmf_58b15586d7ef5ae0f9bb621e88f7b8c4",
+  "provider": "kled",
+  "initial_metadata_root": "sha256:27dfebe0de02bd499d646676835e4caad576ed85109db681fedcdd4319ab313e",
+  "initial_metadata_json": {
+    "app": {
+      "legal_entity": "Nitrility Inc. (Delaware, USA)",
+      "platform_name": "kled.ai"
+    },
+    "attestation": {
+      "algorithm": "ES256",
+      "key_id": "kled-verify-2026-q1",
+      "key_url": "https://www.kled.ai/.well-known/jwks.json",
+      "payload_hash": "sha256:27dfebe0de02bd499d646676835e4caad576ed85109db681fedcdd4319ab313e",
+      "signature": "8iAOvRNFTvaLePz5p5QV6rt-AnxKXmY2Q-a922qrqmHiExKQq87cDCM-O_fhxI-astl8jUmSrvuha9ni-L_XoA",
+      "signed_at_utc": "2026-10-28T14:19:00Z"
+    },
+    "contributor": {
+      "account_verification_status": "verified",
+      "anon_id": "kup_6d3e3352cca53beb02a06712cd26febc",
+      "consent": {
+        "privacy_policy_hash": "sha256:b7c636fec864c0876ed550d3cfdf10a5d79a69436eb365735b31632c64d03693",
+        "privacy_policy_uri": "https://www.kled.ai/privacy-policy/2026-06-25",
+        "privacy_policy_version": "2026-06-25",
+        "tos_hash": "sha256:1b7d2f2c869837987449680ca72d17d72ee763bd65232586d78326d0ad766c7a",
+        "tos_uri": "https://www.kled.ai/terms-of-service/2026-05-01",
+        "tos_version": "2026-05-01"
+      },
+      "kyc_status": "pending",
+      "tax_status": "not_submitted"
+    },
+    "file": {
+      "behavior": {
+        "capture_to_upload_bucket": "1-24h",
+        "capture_to_upload_seconds": 84409,
+        "captured_at_utc": "2026-10-27",
+        "captured_via": "gallery_pick",
+        "client_version": "ios-3.0.3",
+        "upload_session_kind": "gallery_pick",
+        "upload_session_size": 100,
+        "uploaded_at_utc": "2026-10-28",
+        "uploaded_via": "ios_app"
+      },
+      "content_md5": "md5:c1e309a36c7122a0cc33f0e9985eab09",
+      "content_sha256": "sha256:861db01eeaa798cada8168d3a711914048ed8598d594802d0a316cb43b71a3e6",
+      "hashes": {
+        "ahash64": "ffffff3500000f00",
+        "dhash64": "2d706b1ae6e0c748",
+        "phash64": "b8c7d53b4a90c4f8"
+      },
+      "media_category": "image",
+      "mime_type": "image/jpeg",
+      "size_bytes": 730892
+    },
+    "file_specific": {
+      "base": {
+        "intact_metadata": false
+      },
+      "image": {
+        "apple_features": {
+          "has_depth_map": false,
+          "has_portrait_effects_matte": false,
+          "is_heic": false
+        },
+        "device": {
+          "lens_serial_present": false
+        },
+        "integrity": {
+          "ai_generation_markers": "none_detected",
+          "apple_signed_metadata": false,
+          "c2pa_manifest_present": false,
+          "exif_intact": false
+        },
+        "raster": {
+          "bit_depth": 8,
+          "color_space": "sRGB IEC61966-2.1",
+          "compression": "JPEG",
+          "height_px": 4032,
+          "subject_area_present": false,
+          "width_px": 2268
+        },
+        "settings": {}
+      }
+    },
+    "provider_payload": {
+      "kled_schema_version": "1.6",
+      "media_id_public": "kmf_58b15586d7ef5ae0f9bb621e88f7b8c4",
+      "uploader_cohort_id": "kcoh_2026q4_xx"
+    },
+    "schema_version": "trace-v1.0",
+    "timestamps": {
+      "captured_at": "2026-10-27T00:00:00Z",
+      "occurred_at": "2026-10-28T14:16:38Z",
+      "uploaded_at": "2026-10-28T14:16:38Z"
+    }
+  },
+  "occurred_at": "2026-10-28T14:16:38Z",
+  "ingested_at": "2026-10-28T14:19:01Z",
+  "current_seq": 0,
+  "updates": [],
+  "tx_hash": "0x38effbb439a40bc283f29f239f0b0e753a93927d46dd74b3a0019576856a007e"
+}

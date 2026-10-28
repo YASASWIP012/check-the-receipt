@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# audit scratch
+results/audit-run.log
+results/audit-1.*
+.*/launch.json
