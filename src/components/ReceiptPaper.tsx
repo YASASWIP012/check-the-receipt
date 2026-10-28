@@ -53,6 +53,7 @@ export const ReceiptPaper = forwardRef<HTMLDivElement, Props>(function ReceiptPa
   const app = m.app?.platform_name ?? receipt.provider;
   const c = m.contributor;
   const [s1, s2, s3, s4] = status;
+  const version = (v?: string) => (v ? fill(t.lines.accepted, { v }) : "–");
 
   let position = "";
   if (tx?.rawInput) {
@@ -79,8 +80,8 @@ export const ReceiptPaper = forwardRef<HTMLDivElement, Props>(function ReceiptPa
       <Row label={t.lines.size} value={formatBytes(m.file?.size_bytes)} state={s1} />
       <Row label={t.lines.captured} value={`${day(m.timestamps?.captured_at)} · ${m.file?.behavior?.captured_via?.replace(/_/g, " ") ?? ""}`} state={s1} />
       <Row label={t.lines.contributor} value={fill(t.lines.kyc, { status: c?.kyc_status ?? "–", country: c?.kyc_country ?? "–" })} state={s1} />
-      <Row label={t.lines.tos} value={fill(t.lines.accepted, { v: c?.consent?.tos_version ?? "–" })} state={s1} />
-      <Row label={t.lines.pp} value={fill(t.lines.accepted, { v: c?.consent?.privacy_policy_version ?? "–" })} state={s1} />
+      <Row label={t.lines.tos} value={version(c?.consent?.tos_version)} state={s1} />
+      <Row label={t.lines.pp} value={version(c?.consent?.privacy_policy_version)} state={s1} />
 
       <div className="my-3 border-t border-dashed border-[#c9c4b8]" />
 

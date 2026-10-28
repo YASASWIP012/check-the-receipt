@@ -96,3 +96,18 @@ describe("receipt from an app that doesn't sign", () => {
     expect(checkAnchored(receipt, tx).status).toBe("pass");
   });
 });
+
+describe("unsigned receipt whose public fields don't rebuild its root", () => {
+  const receipt = load<TraceReceipt>("unreproducible-receipt.json");
+  const tx = load<AnchorTx>("unreproducible-tx.json");
+
+  it("is reported as not reproducible, not as changed", async () => {
+    const r = await checkFieldsUnchanged(receipt);
+    expect(r.status).toBe("unavailable");
+    expect(r.evidence.note).toMatch(/not reproducible/);
+  });
+
+  it("still has its root on chain", () => {
+    expect(checkAnchored(receipt, tx).status).toBe("pass");
+  });
+});

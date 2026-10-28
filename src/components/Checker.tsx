@@ -209,7 +209,10 @@ export function Checker({ initialId, initialLang, repoUrl }: { initialId: string
             n={1}
             question={t.q1.q}
             status={status[0]}
-            proves={fill(signed ? t.q1.proves : t.q1.provesUnsigned, { app })}
+            proves={fill(
+              results[0]?.evidence.note ? t.q1.notReproducible : signed ? t.q1.proves : t.q1.provesUnsigned,
+              { app },
+            )}
             doesnt={`${fill(t.q1.doesnt, { app })}${bundle?.receipt.provider === "kled" ? ` ${t.q1.termsNote}` : ""}`}
             evidence={results[0]?.evidence}
             t={t}

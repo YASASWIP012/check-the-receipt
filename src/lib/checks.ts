@@ -16,8 +16,12 @@ export async function checkFieldsUnchanged(receipt: TraceReceipt): Promise<Check
     hashedBytes: String(canonicalJson(signedFields).length),
   };
   if (!root) return { status: "unavailable", evidence };
-  const matches = computed === root && (!signed || signed === root);
-  return { status: matches ? "pass" : "mismatch", evidence };
+  if (computed === root && (!signed || signed === root)) return { status: "pass", evidence };
+  // A signed root pins the exact bytes, so a difference means the fields changed.
+  // Without a signature we can't know how the app built its root, so we only
+  // report that the public fields don't rebuild it.
+  if (!attestation) return { status: "unavailable", evidence: { ...evidence, note: "not reproducible from the public fields" } };
+  return { status: "mismatch", evidence };
 }
 
 // Check 2: does the provider's ES256 signature verify against its published key?

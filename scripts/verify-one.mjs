@@ -18,7 +18,10 @@ const root = r.initial_metadata_root.replace("sha256:", "");
 
 // 1. The fields hash to the root.
 const computed = hex(await c.subtle.digest("SHA-256", new TextEncoder().encode(canon(fields))));
-console.log("1 fields hash to root:", computed === root);
+console.log(
+  "1 fields hash to root:",
+  computed === root ? true : att ? "NO, the signed fields were changed" : "no, but this app doesn't sign, so its root may be built another way",
+);
 
 // 2. The provider's signature over "sha256:<root>" verifies with its published key.
 if (att) {

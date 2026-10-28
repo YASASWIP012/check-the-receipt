@@ -1,0 +1,53 @@
+{
+  "data_id": "de04c684-75ea-5114-8e2c-e58de97edace",
+  "source_record_id": "cmsxc883j07ve01oavrax98fs",
+  "provider": "numo",
+  "initial_metadata_root": "sha256:f0c679aa29ac7a5255f0184df92c882708e395bd77940bb362d59b2e88a84b46",
+  "initial_metadata_json": {
+    "app": {
+      "legal_entity": "Poseidon AI, Inc.",
+      "platform_name": "Numo Mobile"
+    },
+    "asset": {
+      "task_id": "cmsr3dji600s401qx91gra0od"
+    },
+    "contributor": {
+      "anon_id": "numo-user-38fd2e8f1e66f867cbf4bf82c309504eca9ef549b78a3c7e849311e3831a4e0f",
+      "consent": {
+        "privacy_policy_version": "2026-06-30"
+      },
+      "geo_region": "KR",
+      "tax_status": "submitted"
+    },
+    "file": {
+      "behavior": {
+        "uploaded_via": "ios_app"
+      },
+      "content_sha256": "sha256:5ab02cb3898bd8a8d2f3825339b47c4604b3d8a2b75ccf9acb697d2379bdd6e6",
+      "media_category": "video",
+      "mime_type": "video/mp4",
+      "size_bytes": 391893041
+    },
+    "file_specific": {
+      "video": {
+        "duration_ms": 611000
+      }
+    },
+    "provider_payload": {
+      "media_id_public": "cmsxc883j07ve01oavrax98fs",
+      "registration_status": "registered",
+      "submission_id": "cmsxc883j07ve01oavrax98fs",
+      "submission_state": "accepted"
+    },
+    "schema_version": "trace-v1.0",
+    "timestamps": {
+      "originated_at": "2026-08-18T05:26:43.864Z",
+      "payment_credited_at": "2026-08-18T05:26:43.864Z"
+    }
+  },
+  "occurred_at": "2026-08-18T05:26:43.864Z",
+  "ingested_at": "2026-08-18T06:02:29Z",
+  "current_seq": 0,
+  "updates": [],
+  "tx_hash": "0x085e28b9e81013c7e90e48a9129d5ce5a47c6813121b0e5013d896679c6a7f92"
+}
