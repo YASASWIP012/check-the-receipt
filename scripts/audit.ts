@@ -3,7 +3,8 @@
 //   npx tsx scripts/audit.ts --n 1000 --seed 20261028
 //
 // Writes results/audit-<seed>.json (one row per receipt) and
-// results/audit-<seed>.md (the summary). Same seed, same sample.
+// results/audit-<seed>.md (the summary). Trace keeps growing, so to redraw
+// an earlier sample pass the range it recorded too: --lo <n> --hi <n>.
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { checkAnchored, checkFieldsUnchanged, checkSignature } from "../src/lib/checks";
@@ -21,6 +22,8 @@ const arg = (name: string, fallback: number) => {
 const N = arg("n", 1000);
 const SEED = arg("seed", 20261028);
 const CONCURRENCY = arg("concurrency", 4);
+const LO = arg("lo", NaN);
+const HI = arg("hi", NaN);
 
 // mulberry32: small, seedable, good enough for picking sample positions.
 function rng(seed: number) {
@@ -113,7 +116,12 @@ async function main() {
   const save = (extra: object) => writeFileSync(checkpoint, JSON.stringify({ ...saved, ...extra }));
 
   const random = rng(SEED);
-  const [lo, hi] = saved.lo != null && saved.hi != null ? [saved.lo, saved.hi] : await bounds();
+  const [lo, hi] =
+    Number.isFinite(LO) && Number.isFinite(HI)
+      ? [LO, HI]
+      : saved.lo != null && saved.hi != null
+        ? [saved.lo, saved.hi]
+        : await bounds();
   saved.lo = lo;
   saved.hi = hi;
   console.log(`history positions ${lo}..${hi}, seed ${SEED}`);

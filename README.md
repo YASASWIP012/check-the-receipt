@@ -22,7 +22,26 @@ All three public checks can be run by an outsider today, using only what Trace, 
 - `registerBatch(bytes)` on the `Sha256DataRegistry` contract takes an array of six-word records. The third word holds the data ID, the fifth the metadata root, and the sixth the file's SHA-256. The `Registered` event only carries an event hash, so the link is visible in the calldata, not the logs.
 - Consent terms are pinned by version and hash. The hash of Kled's public terms page doesn't match the pinned value, probably because a different form of the document was hashed, so the page treats that as "version pinned" and doesn't claim more.
 
-The 1,000-receipt audit in [`results/`](results) shows how often each check passes on a random sample from Trace's whole history.
+## 1,000 random receipts
+
+On Oct 28, 2026 the audit script drew 1,000 receipts at random from Trace's history (registered between Jul 1 and Oct 26, 2026) and ran the three public checks on each.
+
+| Check | Result |
+|---|---|
+| Found in its anchor transaction, with matching root and file hash | 1,000 of 1,000 |
+| Kled signature verifies against Kled's published key | 943 of 943 Kled receipts |
+| Fields rebuild the root | 991 of 1,000 |
+| Anything that didn't match | 0 |
+
+The nine receipts whose fields didn't rebuild the root are all unsigned Numo receipts from the Numo Mobile and Poseidon Season 1 clients. Their roots are on chain like every other receipt's. Those apps don't sign, so there's no way to tell from outside how they built the root. The page reports them as "can't check this yet" and doesn't treat them as changed.
+
+Numo and oto receipts (57 in the sample) carry no provider signature, so check 2 doesn't apply to them.
+
+Every receipt checked is listed in [`results/audit-20261028.json`](results/audit-20261028.json), with the summary in [`results/audit-20261028.md`](results/audit-20261028.md). To redraw the same sample:
+
+```bash
+npm run audit -- --n 1000 --seed 20261028 --lo 100000419 --hi 581807712
+```
 
 ## Planned, not live
 
