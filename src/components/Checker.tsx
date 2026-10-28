@@ -129,17 +129,21 @@ export function Checker({ initialId, initialLang, repoUrl }: { initialId: string
   return (
     <main className="mx-auto max-w-6xl px-4 pb-20 pt-8 sm:px-6 sm:pt-14">
       <header className="flex flex-wrap items-start justify-between gap-4">
-        <div className="max-w-2xl">
-          <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">{t.title}</h1>
-          <p className="mt-3 text-[15px] leading-relaxed text-muted">{t.lede}</p>
+        <div className="max-w-[680px]">
+          <div className="eyebrow">
+            <span className="h-1.5 w-1.5 rounded-full bg-ink" aria-hidden />
+            {t.eyebrow}
+          </div>
+          <h1 className="display mt-4 text-[42px] sm:text-[56px]">{t.title}</h1>
+          <p className="mt-4 text-[17.5px] leading-normal tracking-[-0.011em] text-muted sm:text-[19px]">{t.lede}</p>
         </div>
-        <div className="flex rounded-full border border-line bg-surface p-1 text-sm" role="group" aria-label="Language">
+        <div className="flex gap-0.5 rounded-full bg-tint p-1 text-sm font-medium" role="group" aria-label="Language">
           {(["en", "ko"] as const).map((l) => (
             <button
               key={l}
               type="button"
               onClick={() => setLang(l)}
-              className={`rounded-full px-3 py-1 ${lang === l ? "bg-ink text-bg" : "text-muted"}`}
+              className={`rounded-full px-4 py-1.5 transition-colors ${lang === l ? "shadow-1x bg-surface text-ink" : "text-muted"}`}
               aria-pressed={lang === l}
             >
               {l === "en" ? "EN" : "한국어"}
@@ -152,7 +156,7 @@ export function Checker({ initialId, initialLang, repoUrl }: { initialId: string
         <button
           type="button"
           onClick={pickLive}
-          className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-bg hover:opacity-90"
+          className="btn h-12 rounded-full bg-ink px-6 text-[15px] font-semibold tracking-[-0.01em] text-bg"
         >
           {t.pickLive}
         </button>
@@ -165,29 +169,31 @@ export function Checker({ initialId, initialLang, repoUrl }: { initialId: string
             value={draft}
             onChange={(e) => setDraft(e.target.value)}
             placeholder={t.pasteLabel}
-            className="min-w-0 flex-1 rounded-full border border-line bg-surface px-4 py-2 font-mono text-xs outline-none focus:border-accent"
+            className="shadow-1x h-12 min-w-0 flex-1 rounded-full bg-surface px-5 font-mono text-[13px] outline-none"
           />
-          <button type="submit" className="rounded-full border border-line bg-surface px-4 py-2 text-sm">
+          <button type="submit" className="btn ring-1x h-12 rounded-full bg-surface px-5 text-[15px] font-semibold">
             {t.check}
           </button>
         </form>
       </div>
 
+      <p className="mt-4 text-[13.5px] text-muted">{t.trust}</p>
+
       {error && <p className="mt-4 text-sm text-bad">{error}</p>}
       {bundle?.snapshot && <p className="mt-4 text-sm text-warn">{t.snapshot}</p>}
 
-      <div className="mt-8 grid gap-8 lg:grid-cols-[400px_1fr]">
-        <div className="lg:sticky lg:top-8 lg:self-start">
+      <div className="mt-8 grid gap-8 lg:grid-cols-[436px_1fr]">
+        <div className="stage-soft min-w-0 rounded-[28px] px-3 py-8 sm:px-6 lg:sticky lg:top-8 lg:self-start">
           {loading && !bundle ? (
-            <div className="paper mx-auto flex h-[520px] max-w-[380px] items-center justify-center font-mono text-sm text-[#6b6760]">
+            <div className="paper mx-auto flex h-[520px] max-w-[380px] items-center justify-center font-mono text-sm text-[#6e6e73]">
               {t.loading}
             </div>
           ) : (
             bundle && (
               <>
                 <ReceiptPaper ref={paperRef} receipt={bundle.receipt} tx={bundle.tx} status={status} t={t} shareUrl={shareUrl} />
-                <div className="mt-4 flex justify-center gap-4 text-sm">
-                  <button type="button" onClick={savePng} className="text-accent hover:underline">
+                <div className="mt-5 flex justify-center gap-4 text-sm font-medium">
+                  <button type="button" onClick={savePng} className="text-ink underline-offset-4 hover:underline">
                     {t.print}
                   </button>
                   <a
@@ -244,14 +250,14 @@ export function Checker({ initialId, initialLang, repoUrl }: { initialId: string
             t={t}
           />
 
-          <section className="min-w-0 rounded-2xl border border-line bg-surface p-5">
-            <div className="flex rounded-full border border-line p-1 text-sm" role="group">
+          <section className="ring-1x min-w-0 rounded-[20px] bg-surface p-5">
+            <div className="flex gap-0.5 rounded-full bg-tint p-1 text-sm font-medium" role="group">
               {(["today", "walrus"] as const).map((m) => (
                 <button
                   key={m}
                   type="button"
                   onClick={() => setMode(m)}
-                  className={`flex-1 rounded-full px-3 py-1.5 ${mode === m ? "bg-ink text-bg" : "text-muted"}`}
+                  className={`flex-1 rounded-full px-3 py-2 transition-colors ${mode === m ? "shadow-1x bg-surface text-ink" : "text-muted"}`}
                   aria-pressed={mode === m}
                 >
                   {m === "today" ? t.today : t.withWalrus}
@@ -273,7 +279,7 @@ export function Checker({ initialId, initialLang, repoUrl }: { initialId: string
                   <FileDrop t={t} onFile={onFile} />
                 </CheckCard>
               ) : (
-                <div className="rounded-2xl border border-dashed border-warn/50 bg-warn-soft/40 p-5">
+                <div className="rounded-[20px] border border-dashed border-warn/40 bg-warn-soft/50 p-5">
                   <div className="flex items-start justify-between gap-3">
                     <h3 className="text-[15px] font-semibold leading-snug">
                       <span className="mr-2 font-mono text-muted">4</span>
@@ -301,7 +307,7 @@ export function Checker({ initialId, initialLang, repoUrl }: { initialId: string
         </div>
       </div>
 
-      <footer className="mt-16 border-t border-line pt-6 text-sm leading-relaxed text-muted">
+      <footer className="mt-20 border-t border-line pt-8 text-[13.5px] leading-relaxed text-muted">
         <p>{t.footer.holders}</p>
         <p className="mt-3">
           {t.footer.sources}:{" "}

@@ -4,8 +4,8 @@ import type { CheckStatus } from "@/lib/types";
 export type UiStatus = CheckStatus | "idle" | "running";
 
 const styles: Record<UiStatus, string> = {
-  idle: "bg-line text-muted",
-  running: "bg-accent/15 text-accent",
+  idle: "bg-tint text-muted",
+  running: "bg-tint text-ink",
   pass: "bg-pass-soft text-pass",
   mismatch: "bg-bad-soft text-bad",
   waiting: "bg-warn-soft text-warn",
@@ -38,15 +38,15 @@ export function StatusPill({ status, t }: { status: UiStatus; t: Dict }) {
 export function lineClass(status: UiStatus): string {
   switch (status) {
     case "pass":
-      return "text-[#1f7a4d]";
+      return "text-[#1f7a3d]";
     case "mismatch":
       return "text-[#b3261e] bg-[#fbe5e3]";
     case "waiting":
     case "unavailable":
-      return "text-[#9a6200]";
+      return "text-[#8f5200]";
     case "running":
-      return "text-[#2b59c3]";
+      return "text-[#515154]";
     default:
-      return "text-[#a39e94]";
+      return "text-[#86868b]";
   }
 }

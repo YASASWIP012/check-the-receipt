@@ -21,12 +21,12 @@ export function CheckCard({ n, question, status, proves, doesnt, evidence, t, ch
 
   return (
     <section
-      className={`relative min-w-0 overflow-hidden rounded-2xl border border-line bg-surface p-5 transition-shadow ${
+      className={`relative min-w-0 overflow-hidden rounded-[20px] bg-surface p-5 transition-shadow sm:p-6 ${
         status === "running" ? "scanning" : ""
-      }`}
+      } ${status === "pass" ? "shadow-[0_0_0_1.5px_rgba(31,122,61,0.45),var(--shadow-1)]" : "ring-1x"}`}
     >
       <div className="flex items-start justify-between gap-3">
-        <h3 className="text-[15px] font-semibold leading-snug">
+        <h3 className="text-[17px] font-semibold leading-snug tracking-[-0.015em]">
           <span className="mr-2 font-mono text-muted">{n}</span>
           {question}
         </h3>
@@ -38,12 +38,12 @@ export function CheckCard({ n, question, status, proves, doesnt, evidence, t, ch
       {settled && (
         <dl className="mt-4 grid gap-3 text-sm leading-relaxed">
           <div>
-            <dt className="text-xs font-medium uppercase tracking-wide text-muted">{t.proves}</dt>
+            <dt className="eyebrow">{t.proves}</dt>
             <dd className="mt-1">{proves}</dd>
           </div>
           {doesnt && (
             <div>
-              <dt className="text-xs font-medium uppercase tracking-wide text-muted">{t.doesnt}</dt>
+              <dt className="eyebrow">{t.doesnt}</dt>
               <dd className="mt-1 text-muted">{doesnt}</dd>
             </div>
           )}
@@ -55,7 +55,7 @@ export function CheckCard({ n, question, status, proves, doesnt, evidence, t, ch
           <button
             type="button"
             onClick={() => setOpen((o) => !o)}
-            className="text-xs font-medium text-accent underline-offset-4 hover:underline"
+            className="text-[13px] font-semibold text-ink underline-offset-4 hover:underline"
             aria-expanded={open}
           >
             {open ? t.hideBytes : t.showBytes}

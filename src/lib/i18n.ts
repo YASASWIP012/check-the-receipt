@@ -4,7 +4,9 @@ type Vars = Record<string, string | number>;
 const fill = (s: string, v: Vars = {}) => s.replace(/\{(\w+)\}/g, (_, k) => String(v[k] ?? ""));
 
 const en = {
-  title: "Check the receipt",
+  eyebrow: "Trace receipt checker",
+  title: "Check the receipt.",
+  trust: "No wallet · No account · Runs in your browser",
   lede: "Trace has recorded more than 250 million receipts for AI training data. Each one makes claims about a real file and the person who shared it. Pick one and check those claims yourself, in your browser.",
   pickLive: "Check a receipt that just landed",
   pasteLabel: "Or paste a Trace data ID",
@@ -89,7 +91,9 @@ const en = {
 };
 
 const ko: typeof en = {
-  title: "영수증을 직접 확인하세요",
+  eyebrow: "Trace 영수증 확인 도구",
+  title: "영수증을 직접 확인하세요.",
+  trust: "지갑 필요 없음 · 계정 필요 없음 · 브라우저에서 실행",
   lede: "Trace는 AI 학습 데이터 영수증을 2억 5천만 건 넘게 기록했습니다. 영수증마다 실제 파일과 그 파일을 공유한 사람에 대한 내용이 담겨 있습니다. 하나를 골라 그 내용이 맞는지 브라우저에서 직접 확인해 보세요.",
   pickLive: "방금 등록된 영수증 확인하기",
   pasteLabel: "또는 Trace 데이터 ID 붙여넣기",

@@ -1,48 +1,47 @@
 @import "tailwindcss";
 
+/* Indie-app design system: mist mood, mono accent, always light. Green, amber and red are
+   product status colours, not accents. */
 :root {
-  --bg: #f3f1ec;
+  --bg: #ffffff;
+  --bg-alt: #f5f5f7;
   --surface: #ffffff;
+  --surface-2: #fafafb;
   --paper: #fffdf7;
-  --ink: #1c1b19;
-  --muted: #6b6760;
-  --line: #e2ded5;
-  --pass: #1f7a4d;
-  --pass-soft: #e4f3ea;
-  --warn: #9a6200;
-  --warn-soft: #fbf0d9;
+  --ink: #1d1d1f;
+  --ink-2: #515154;
+  --muted: #6e6e73;
+  --ink-4: #86868b;
+  --line: rgba(0, 0, 0, 0.08);
+  --line-2: rgba(0, 0, 0, 0.14);
+  --tint: rgba(0, 0, 0, 0.045);
+  --pass: #1f7a3d;
+  --pass-soft: #e6f2ea;
+  --warn: #8f5200;
+  --warn-soft: #fff3de;
   --bad: #b3261e;
   --bad-soft: #fbe5e3;
-  --idle: #b9b4aa;
-  --accent: #2b59c3;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #141412;
-    --surface: #1d1c1a;
-    --paper: #f6f2e8;
-    --ink: #ece9e2;
-    --muted: #a19c92;
-    --line: #34322e;
-    --pass: #4cc38a;
-    --pass-soft: #17301f;
-    --warn: #e0a640;
-    --warn-soft: #33270f;
-    --bad: #f07167;
-    --bad-soft: #3a1714;
-    --idle: #5d5952;
-    --accent: #7ea2ff;
-  }
+  --idle: #86868b;
+  --accent: var(--ink);
+  --ring: 0 0 0 1px var(--line);
+  --shadow-1: 0 0 0 0.5px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06), 0 6px 18px rgba(0, 0, 0, 0.06);
+  --shadow-2: 0 0 0 0.5px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.05), 0 24px 60px -12px rgba(0, 0, 0, 0.18);
+  --wallpaper-soft: radial-gradient(70% 60% at 85% 0%, #dce8ff 0, transparent 60%), radial-gradient(60% 60% at 10% 100%, #ffe6c2 0, transparent 60%), linear-gradient(160deg, #f7f7f9, #eef0f4);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-spring: cubic-bezier(0.34, 1.36, 0.64, 1);
 }
 
 @theme inline {
   --color-bg: var(--bg);
+  --color-bg-alt: var(--bg-alt);
   --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
   --color-paper: var(--paper);
   --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
   --color-muted: var(--muted);
   --color-line: var(--line);
+  --color-tint: var(--tint);
   --color-pass: var(--pass);
   --color-pass-soft: var(--pass-soft);
   --color-warn: var(--warn);
@@ -51,21 +50,76 @@
   --color-bad-soft: var(--bad-soft);
   --color-idle: var(--idle);
   --color-accent: var(--accent);
-  --font-sans: var(--font-geist-sans), "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, "Apple SD Gothic Neo", monospace;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+  --font-mono: var(--font-jbmono), "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 body {
   background: var(--bg);
   color: var(--ink);
   font-family: var(--font-sans);
+  font-size: 16.5px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-/* The receipt stays light in both themes, like real paper. */
+::selection {
+  background: #d4f53c;
+  color: #17150f;
+}
+
+:where(a, button, input, summary):focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.display {
+  font-weight: 700;
+  letter-spacing: -0.042em;
+  line-height: 1;
+  text-wrap: balance;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.ring-1x {
+  box-shadow: var(--ring);
+}
+.shadow-1x {
+  box-shadow: var(--shadow-1);
+}
+.shadow-2x {
+  box-shadow: var(--shadow-2);
+}
+.stage-soft {
+  background: var(--wallpaper-soft);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+}
+
+.btn {
+  transition: transform 0.12s var(--ease-spring), background-color 0.2s var(--ease-out), box-shadow 0.2s var(--ease-out);
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: scale(0.97);
+}
+
+/* The receipt stays paper-coloured, like the real thing. */
 .paper {
   background: var(--paper);
-  color: #1c1b19;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04), 0 12px 32px -12px rgba(0, 0, 0, 0.25);
+  color: #1d1d1f;
+  filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.16));
   --zig: 8px;
   mask:
     conic-gradient(from 135deg at top, #0000, #000 1deg 89deg, #0000 90deg) top / var(--zig) 51% repeat-x,
@@ -77,20 +131,29 @@ body {
 }
 
 @keyframes scan {
-  from { transform: translateY(-100%); }
-  to { transform: translateY(100%); }
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100%);
+  }
 }
 
 .scanning::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, transparent, rgba(43, 89, 195, 0.12), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.035), transparent);
   animation: scan 900ms ease-in-out infinite;
   pointer-events: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .scanning::after { animation: none; }
-  .line-state { transition: none; }
+  .scanning::after {
+    animation: none;
+  }
+  .line-state,
+  .btn {
+    transition: none;
+  }
 }

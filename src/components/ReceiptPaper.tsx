@@ -67,7 +67,7 @@ export const ReceiptPaper = forwardRef<HTMLDivElement, Props>(function ReceiptPa
   }
 
   return (
-    <div ref={ref} className="paper relative mx-auto w-full max-w-[380px] px-6 pt-8 pb-9 font-mono text-[13px] leading-snug">
+    <div ref={ref} className="paper relative mx-auto w-full max-w-[380px] px-5 pt-8 pb-9 font-mono text-[12.5px] leading-snug">
       <div className="text-center">
         <div className="text-[15px] font-semibold tracking-[0.3em]">TRACE</div>
         <div className="mt-1 text-[11px] tracking-widest text-[#6b6760]">{t.lines.receipt} · {fill(t.lines.via, { app })}</div>

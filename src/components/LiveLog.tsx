@@ -68,8 +68,8 @@ export function LiveLog({ t, onOpen }: { t: Dict; onOpen: (id: string) => void }
   const count = (o: CheckStatus) => done.filter((r) => r.outcome === o).length;
 
   return (
-    <section className="min-w-0 rounded-2xl border border-line bg-surface p-5">
-      <h2 className="text-[15px] font-semibold">{t.live.title}</h2>
+    <section className="ring-1x min-w-0 rounded-[20px] bg-surface p-5">
+      <h2 className="text-[17px] font-semibold tracking-[-0.015em]">{t.live.title}</h2>
       <p className="mt-1 text-sm text-muted">{t.live.sub}</p>
       <p className="mt-3 text-xs text-muted">
         {fill(t.live.counts, { pass: count("pass"), waiting: count("waiting"), other: count("unavailable") + count("mismatch") })}
